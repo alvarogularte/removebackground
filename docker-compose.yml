@@ -3,13 +3,15 @@ version: '3.1'
 services:
   backend:
   build:
+    context: ./backend
   ports:
     - "5000:5000"
   depends_on:
     - db
 
   frontend:
-    build: ../frontend
+    build:
+      context: ./frontend
     ports:
       - "80:80"
     depends_on:
@@ -19,7 +21,7 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRE_PASSWORD: ${POSTGRE_PASSWORD}
-      POSTGRE_DB: ${POSTGRE_DB}
+      POSTGRE_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRE_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
